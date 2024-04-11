@@ -109,9 +109,24 @@ def generateAll():
     
 Syllos = generateAll()
 
-cMood = []  ##list of lists; each  list has two elements: the mood of the argument and the valid conclusion.
+vcMood = []  ##list of lists; each  list has two elements: the mood of the argument and the valid conclusion.
 for x in Syllos:
         arg = [x[0][3].capitalize()] + [x[3]]
-        cMood.append(arg)
+        vcMood.append(arg)
 
-print(cMood)
+Conclusions = [] ##list of the responses of the model
+CsMood =[]
+for Conclusion in Conclusions:
+    if "All" in Conclusion:
+        M = "A"
+    elif "No" in Conclusion:
+        M = "E"
+    elif "Some" and "not" in Conclusion:
+        M = "O"
+    elif "Some" in Conclusion:
+        M = "I"
+    elif "Nothing follows" in Conclusion:
+        M = Conclusion
+
+    CMood = [M + ", " + Conclusion]
+    CsMood.append(CMood)
