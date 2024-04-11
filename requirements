@@ -1,3 +1,3 @@
 transformers
-torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu117 ##changing cu117 for the GPU available checking with nvidia-smi
+torch torchvision torchaudio 
 accelerate
