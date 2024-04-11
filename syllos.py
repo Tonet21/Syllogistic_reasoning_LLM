@@ -1,6 +1,6 @@
 import random
 from collections import OrderedDict
-import numpy as np
+
 
 ## This code is originally from the blog post
 ##http://prolatio.blogspot.com/2016/08/all-256-syllogism-forms-with-examples.html
@@ -162,9 +162,17 @@ Possible_conclusions = []
 for term in Terms:
   S = term[0]
   P = term[1]
-  conclusion_choices = [f"All {S} are {P}",f"Some {S} are {P}", f"No {S} are {P}",f"Some {S} are not {P}",
-                        f"All {P} are {S}",f"Some {P} are {S}", f"No {P} are {S}",f"Some {P} are not {S}",
-                        f"Nothing follows"]
+  conclusion_choices = [
+    "All {} are {}".format(S, P),
+    "Some {} are {}".format(S, P),
+    "No {} are {}".format(S, P),
+    "Some {} are not {}".format(S, P),
+    "All {} are {}".format(P, S),
+    "Some {} are {}".format(P, S),
+    "No {} are {}".format(P, S),
+    "Some {} are not {}".format(P, S),
+    "Nothing follows"
+]
   Possible_conclusions.append(conclusion_choices)
 
 
@@ -176,5 +184,10 @@ for arguments in generated_syllogisms:
   x += 1
 Complete_prompts = []
 for prompt in Prompts:
-   cprompt = "Choose the conclusion that logically follows the premises, if non of the conclusions logically follows choose 'Nothing follows'." f"The premises are: {prompt[0]}, {prompt[1]}. The possible conclusions are {prompt[2]}."
+   cprompt = """Choose the conclusion that logically follows the premises, 
+if none of the conclusions logically follows choose 'Nothing follows'.
+
+The premises are: {}{}.
+The possible conclusions are {}.""".format(prompt[0], prompt[1], prompt[2])
+
    Complete_prompts.append(cprompt)
