@@ -8,9 +8,9 @@ from collections import OrderedDict
 ## I added code to make and append the possible conclusions (be aware that the
 ## code still needs cleaning and it is not as efficient as it should)
 
-sylloExamples = [('women', 'men', 'humans'),]
+sylloExamples = [('actuaries', 'sculptors', 'writers')]
 
-## sylloExamples contains the triplets of terms, these terms could be changed
+## sylloExamples contains the triplets of terms; these terms could be changed
 ## depending on if we want them to have semantic relation or not
 
 
