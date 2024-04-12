@@ -3,8 +3,9 @@ from collections import OrderedDict
 from Mixtral import model_conclusions
 
 
-sylloExamples = [('women', 'men', 'humans')
-              ]
+sylloExamples = [('actuaries', 'sculptors', 'writers')]
+
+
 class Figure:
     def __init__(self, type=None):
         self.figureType = type
