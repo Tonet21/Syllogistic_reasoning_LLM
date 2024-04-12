@@ -1,5 +1,6 @@
 import random
 from collections import OrderedDict
+from Mixtral import model_conclusions
 
 
 sylloExamples = [('women', 'men', 'humans')
@@ -103,18 +104,27 @@ def generateAll():
                     if shorthand in logical:
                         syllo = [shorthand] + s.generate()
                         syllos.append(syllo)
+                    else:
+                        syllos.append("Not a valid conclusion")
                     
                     
     return syllos              
     
 Syllos = generateAll()
 
-vcMood = []  ##list of lists; each  list has two elements: the mood of the argument and the valid conclusion.
-for x in Syllos:
-        arg = [x[0][3].capitalize()] + [x[3]]
-        vcMood.append(arg)
 
-Conclusions = [] ##list of the responses of the model
+vcMood = []  ##list that contains the mood and the conclusion of valid syllogisms but if it's not valid it says "Not a valid conclusion"
+for x in Syllos:
+        if x != "Not a valid conclusion":
+            arg = [x[0][3].capitalize()] + [x[3]]
+            vcMood.append(arg)
+        else:
+            arg = "Not a valid conclusion"
+            vcMood.append(arg)
+
+
+
+Conclusions = model_conclusions
 CsMood =[]
 for Conclusion in Conclusions:
     if "All" in Conclusion:
@@ -130,3 +140,4 @@ for Conclusion in Conclusions:
 
     CMood = [M + ", " + Conclusion]
     CsMood.append(CMood)
+
