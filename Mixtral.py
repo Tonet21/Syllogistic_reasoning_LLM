@@ -5,7 +5,7 @@ model = AutoModelForCausalLM.from_pretrained("mistralai/Mixtral-8x7B-v0.1", devi
 
 tokenizer = AutoTokenizer.from_pretrained("mistralai/Mixtral-8x7B-v0.1")
 
-
+model_conclusions = []
 for pro in Complete_prompts:
     prompt = pro
 
@@ -13,4 +13,6 @@ for pro in Complete_prompts:
 
     generated_ids = model.generate(**model_inputs, max_new_tokens=100, do_sample=True)
 
-    tokenizer.batch_decode(generated_ids)[0]
+    model_conclusion =tokenizer.batch_decode(generated_ids)[0]
+
+    model_conclusions.append(model_conclusion)
