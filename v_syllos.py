@@ -1,6 +1,6 @@
 import random
 from collections import OrderedDict
-from Mixtral import model_conclusions
+import Mixtral
 
 
 sylloExamples = [('actuaries', 'sculptors', 'writers')]
@@ -125,7 +125,7 @@ for x in Syllos:
 
 
 
-Conclusions = model_conclusions
+Conclusions = Mixtral.model_conclusions
 CsMood =[]
 for Conclusion in Conclusions:
     if "All" in Conclusion:
