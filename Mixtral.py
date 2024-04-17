@@ -1,12 +1,12 @@
 from transformers import AutoModelForCausalLM, AutoTokenizer
-from syllos import Complete_prompts
+import syllos
 
 model = AutoModelForCausalLM.from_pretrained("mistralai/Mixtral-8x7B-v0.1", device_map="auto")
 
 tokenizer = AutoTokenizer.from_pretrained("mistralai/Mixtral-8x7B-v0.1")
 
 model_conclusions = []
-for pro in Complete_prompts:
+for pro in syllos.Complete_prompts:
     prompt = pro
 
     model_inputs = tokenizer([prompt], return_tensors="pt").to("cuda")
