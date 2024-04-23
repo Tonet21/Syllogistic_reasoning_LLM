@@ -1,9 +1,9 @@
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import syllos
 
-## add access token
+access_token = ""
 
-model = AutoModelForCausalLM.from_pretrained("mistralai/Mixtral-8x7B-v0.1", device_map="auto")
+model = AutoModelForCausalLM.from_pretrained("mistralai/Mixtral-8x7B-v0.1", token= access_token, device_map="auto")
 
 tokenizer = AutoTokenizer.from_pretrained("mistralai/Mixtral-8x7B-v0.1")
 
