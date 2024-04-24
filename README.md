@@ -1,4 +1,19 @@
-When installing the requirements, change the cuda version of torch to your cuda. Now it is set at cu121 (12.1 version).
+When installing the requirements, change the cuda version of torch to your cuda. Now it is set to cu121 (12.1 version).
+
+The model is quite heavy, consider using quantization (these changes have to be made in the Mixtral.py file)
+´´´
+quantization_config = BitsAndBytesConfig(
+
+        load_in_4bit=True,
+
+        bnb_4bit_quant_type="nf4",
+
+        bnb_4bit_compute_dtype="torch.float16",)
+
+model = AutoModelForCausalLM.from_pretrained("mistralai/Mixtral-8x7B-v0.1", token= access_token, quantization_config=True, device_map="auto")
+´´´
+
+
 
 There are a few files: 
 syllos: produces a list of the 256 from a dictionary called sylloExamples, which can be changed.
