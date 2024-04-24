@@ -1,6 +1,7 @@
 When installing the requirements, change the cuda version of torch to your cuda. Now it is set to cu121 (12.1 version).
 
-The model is quite heavy, consider using quantization (these changes have to be made in the Mixtral.py file)
+The model is quite heavy, consider using quantization (these changes have to be made in the Mixtral.py file):
+
 ´´´
 quantization_config = BitsAndBytesConfig(
 
