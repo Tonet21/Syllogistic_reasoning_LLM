@@ -30,6 +30,8 @@ If you want to use more models, you have to use the same template but change the
 
 ###DISCLAIMER###
 
-This project was part of my internship. I'm currently working on optimizing it and expanding it to different models and languages. But, this repo won't change.
+This project was part of my internship. I'm currently working on optimizing it and expanding it to different models and languages. But this repo won't change.
+
+Also, keep in mind that this code uses the base model, for better results, use the instruct model.
 
 
