@@ -1,25 +1,52 @@
-import csv
-import syllos
-import v_syllos
+import re
+from syllo import syllogisms
+from collections import defaultdict
+import pandas as pd
+from mixtral import model_conclusions
 
-# Define your headers
-headers = ["First Premise", "Second Premise", "Model Conlusions", "Conclusions"]
 
-# Open the CSV file in write mode
-with open("data.csv", "w", newline="") as csvfile:
-  writer = csv.writer(csvfile)
+conclusions = []  
+i = 0
+for prem1, prem2,mood in syllogisms:
+            
+        conclusion = model_conclusions[i]
+        if re.search("^Some", conclusion):
+            if re.search(".+not", conclusion):
+                conclusion = [mood, conclusion, "O"]
+            else:
+                conclusion = [mood, conclusion, "I"]
+        elif re.search("^All", conclusion):
+            conclusion = [mood, conclusion, "A"]
+        elif re.search("^No", conclusion):
+            conclusion = [mood, conclusion, "E"]
+        else: 
+            conclusion = [mood, conclusion, "NVC"]
+    
+        conclusions.append(conclusion)
+        i += 1 
 
-  # Write the header row
-  writer.writerow(headers)
 
-  # Extract first and second elements using list comprehension
-  first_premises = [premise[0] for premise in syllos.premises]
-  second_premises = [premise[1] for premise in syllos.premises]
+conclusion_count = defaultdict(dict)
+for syllo_mood, _, conclusion_mood in conclusions:
+  conclusion_count[syllo_mood][conclusion_mood] = conclusion_count[syllo_mood].get(conclusion_mood, 0) + 1
 
-  # Write each element to a separate column
-  for first_premise, second_premise, model_conclusion, conclusion in zip(first_premises, second_premises, v_syllos.CsMood, v_syllos.vcMood):
-    writer.writerow([first_premise, second_premise, model_conclusion, conclusion])
 
-print("CSV file created successfully!")
+ 
+data = conclusion_count
+columns = ["A", "E", "I", "O", "NVC"]
 
+
+df = pd.DataFrame(index=data.keys(), columns=columns).fillna(0)
+for key, inner_dict in data.items():
+    for inner_key, count in inner_dict.items():
+        df.at[key, inner_key] = count
+
+df.reset_index(inplace=True)
+df.rename(columns={"index": "syllogism"}, inplace=True)
+
+
+excel_file_path = "syllogism_conclusions.xlsx"
+df.to_excel(excel_file_path, index=False)
+
+print(f"DataFrame saved to {excel_file_path}")
 
