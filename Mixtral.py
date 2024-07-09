@@ -1,20 +1,31 @@
 from transformers import AutoModelForCausalLM, AutoTokenizer
-import syllos
+from prompt import prompts
 
-access_token = ""
 
-model = AutoModelForCausalLM.from_pretrained("mistralai/Mixtral-8x7B-v0.1", token= access_token, device_map="auto")
+acces_token = "hf..."
 
-tokenizer = AutoTokenizer.from_pretrained("mistralai/Mixtral-8x7B-v0.1")
+model = AutoModelForCausalLM.from_pretrained("mistralai/Mixtral-8x7B-Instruct-v0.1", token=acces_token, device_map="aut$
+
+tokenizer = AutoTokenizer.from_pretrained("mistralai/Mixtral-8x7B-Instruct-v0.1", token=acces_token)
+if tokenizer.pad_token_id is None:
+    tokenizer.pad_token = tokenizer.eos_token
 
 model_conclusions = []
-for pro in syllos.Complete_prompts:
-    prompt = pro
 
-    model_inputs = tokenizer([prompt], return_tensors="pt").to("cuda")
 
-    generated_ids = model.generate(**model_inputs, max_new_tokens=100, do_sample=True)
+for prompt in prompts:
 
-    model_conclusion =tokenizer.batch_decode(generated_ids)[0]
+    messages = [
+
+    {"role": "user", "content": prompt},
+    ]
+
+    model_inputs = tokenizer.apply_chat_template(messages, return_tensors="pt").to("cuda")
+
+    generated_ids = model.generate(model_inputs, max_new_tokens=100, do_sample=True)
+
+    model_conclusion = tokenizer.batch_decode(generated_ids)[0]
+
+    print(model_conclusion)
 
     model_conclusions.append(model_conclusion)
