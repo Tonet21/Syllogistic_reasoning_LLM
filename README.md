@@ -30,7 +30,7 @@ If you want to use more models, you have to use the same template but change the
 
 ###DISCLAIMER###
 
-This project was part of my internship. I'm currently working on optimizing it and expanding it to different models and languages. But this repo won't change.
+This project was part of my internship. I'm currently working on optimizing it and expanding it to different models and languages. But this repo won't change. Also, for better results, use the tokenizer from Mistralai (more info on https://huggingface.co/mistralai/Mixtral-8x7B-Instruct-v0.1)
 
 
 
