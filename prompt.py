@@ -9,7 +9,7 @@ system_message = f"""You are an expert in syllogistic reasoning.
                      Choices: <list of choices separated by commas>
 
                      Your response should be one of the given choices, or "NVC" if none of the options are valid.
-
+                     State your choice ; there is no need to explain your reasoning .
                      Please take your time to analyze the syllogism carefully and avoid rushing to a conclusion.
                      """
 prompts = []
