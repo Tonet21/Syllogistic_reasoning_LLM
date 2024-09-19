@@ -11,12 +11,12 @@ import re
 conclusions = []
 i = 0
 
-# Iterate over the syllogisms and process each conclusion
+
 for prem1, prem2,mood, type_ in syllogisms:
 
     conclusion = model_conclusions[i]
 
-    # Classify the conclusion based on its starting words
+
     if re.search("Some", conclusion):
         if re.search(".+not", conclusion):
             conclusion = [mood, possible_conclusions[i][3], "O", type_]
@@ -75,11 +75,11 @@ for mood, types in type_count.items():
             row[conclusion_mood] = count
         flattened_data.append(row)
 
-# Create a DataFrame
+
 columns = ["syllogism", "type", "A", "E", "I", "O", "NVC"]
 df = pd.DataFrame(flattened_data, columns=columns)
 
-# Save the DataFrame to an Excel file
+
 excel_file_path = "mistral_syllogism_type_conclusions2.xlsx"
 df.to_excel(excel_file_path, index=False)
 
