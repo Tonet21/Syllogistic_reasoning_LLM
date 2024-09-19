@@ -3,11 +3,13 @@
 
 This project aims to know how many times an LLM draws every type of conclusion based on the two premises of the 64 available syllogisms.
 
-When pip installing the requirements, change the cuda version of torch to your cuda. Now it is set to cu121 (12.1 version).
+When pip installing the requirements, change the Cuda version of torch to your Cuda. Now it is set to cu121 (12.1 version).
+These particular models need a hugging face key; remember to use them in the models. The code already has a variable called "access_token", so you know where to set it. If you prefer using environment variables, remember to change the code.
+
 
 There are a few files: 
 
-- The syllos.py produces a list of 64 sets of premisses and its four possible conclusions based on triplets. You can modify the triplets list; for every triplet, you will get a set of 64 syllogisms (without the conclusion) and a list of the four possible conclusions (NVC is not considered here). For every triplet, you will get two nested lists (one list for 64 lists): the first one contains the  first premise, the second premise, the mood, and the figure. The second list is the possible conclusions. In this case, for 30 triplets you will get two nested lists. Each list will contain 30 lists, and each of those lists will contain 64 lists.
+- The syllos.py produces a list of 64 sets of premisses and its four possible conclusions based on triplets. You can modify the triplets list; for every triplet, you will get a set of 64 syllogisms (without the conclusion) and a list of the four possible conclusions (NVC is not considered here). For every triplet, you will get two nested lists (one list for 64 lists): the first one contains the  first premise, the second premise, the mood, and the figure. The second list is the possible conclusions. In this case, for 30 triplets, you will get two nested lists. Each list will contain 30 lists, and each of those lists will contain 64 lists.
 
 - The prompt.py produces the prompts. It is fed with the lists from syllo.py to generate a prompt for each syllogism.
 
