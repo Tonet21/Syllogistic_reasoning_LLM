@@ -7,7 +7,7 @@ from mistral_common.protocol.instruct.messages import UserMessage
 from mistral_common.protocol.instruct.request import ChatCompletionRequest
 from long_prompt import prompts,system_message
 from mistral_common.protocol.instruct.messages import SystemMessage
-
+import re
 
 
 access_token = "hf..."
@@ -17,7 +17,7 @@ local_model_dir = ""
 mistral_models_path = Path(local_model_dir)
 mistral_models_path.mkdir(parents=True, exist_ok=True)
 
-# Download the model
+
 snapshot_download(
     repo_id="mistralai/Mistral-7B-Instruct-v0.3",
     allow_patterns=["params.json", "consolidated.safetensors", "tokenizer.model.v3"],
@@ -30,10 +30,6 @@ snapshot_download(
 tokenizer = MistralTokenizer.from_file(f"{mistral_models_path}/tokenizer.model.v3")
 model = Transformer.from_folder(mistral_models_path)
 
-
-import re
-
-import re
 
 def extract_conclusion(text):
 
