@@ -68,11 +68,11 @@ for mood, types in type_count.items():
             row[conclusion_mood] = count
         flattened_data.append(row)
 
-# Create a DataFrame
+
 columns = ["syllogism", "type", "A", "E", "I", "O", "NVC"]
 df = pd.DataFrame(flattened_data, columns=columns)
 
-# Save the DataFrame to an Excel file
+
 excel_file_path = "llama3_syllogism_type_conclusions2.xlsx"
 df.to_excel(excel_file_path, index=False)
 
