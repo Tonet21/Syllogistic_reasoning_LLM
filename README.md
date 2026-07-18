@@ -9,7 +9,7 @@ These particular models need a hugging face key; remember to use them in the mod
 
 There are a few files: 
 
-- The syllos.py produces a list of 64 sets of premisses and its four possible conclusions based on triplets. You can modify the triplets list; for every triplet, you will get a set of 64 syllogisms (without the conclusion) and a list of the four possible conclusions (NVC is not considered here). For every triplet, you will get two nested lists (one list for 64 lists): the first one contains the  first premise, the second premise, the mood, and the figure. The second list is the possible conclusions. In this case, for 30 triplets, you will get two nested lists. Each list will contain 30 lists, and each of those lists will contain 64 lists.
+- The syllos.py produces a list of 64 sets of premisses and its four possible conclusions based on triplets. You can modify the triplets list; for every triplet, you will get a set of 64 syllogisms (without the conclusion) and a list of the four possible conclusions (NVC is not considered here). For every triplet, you will get two nested lists (one list for 64 lists): the first one contains the  first premise, the second premise, the mood, and the figure. The second list is the possible conclusions. In this case, for 30 triplets, you will get two nested lists. Each list will contain 30 lists, and each of those lists will contain 64 lists. Based on syllogism generator by mscuthbert (GitHub)[https://gist.github.com/mscuthbert/c8c8889ea0bb10fd3a3b50027237add4](https://gist.github.com/mscuthbert/c8c8889ea0bb10fd3a3b50027237add4)
 
 - The prompt.py produces the prompts. It is fed with the lists from syllo.py to generate a prompt for each syllogism.
 
