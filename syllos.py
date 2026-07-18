@@ -106,3 +106,6 @@ def generateAll():
 syllogisms = generateAll()[0]
 possible_conclusions = generateAll()[1]
 
+
+# Based on syllogism generator by mscuthbert (GitHub)
+# [https://gist.github.com/mscuthbert/c8c8889ea0bb10fd3a3b50027237add4](https://gist.github.com/mscuthbert/c8c8889ea0bb10fd3a3b50027237add4)
